@@ -1,3 +1,4 @@
+#include <iomanip> // used for setw ( BASED ON: https://stackoverflow.com/questions/13484943/print-a-binary-tree-in-a-pretty-way )
 #include "BST.h"
 /** default Constructor **/
 BST::BST() {
@@ -14,12 +15,9 @@ void BST::freeSubtree(node* ptr)
 {
 	if( ptr != NULL )
 	{
-		double key = ptr->key;
 		freeSubtree(ptr->right);
 		freeSubtree(ptr->left);
 		delete ptr;
-
-		cout << key << " Deleted." << endl;
 		_size-- ;
 	}
 
@@ -29,6 +27,7 @@ BST::node* BST::allocateLeaf(double key) {
 	temp->key = key;
 	temp->right = NULL;
 	temp->left = NULL;
+	temp->parent = NULL;
 	return temp;
 }
 BST::node* BST::insert(double key,node* ptr) {
@@ -40,9 +39,13 @@ BST::node* BST::insert(double key,node* ptr) {
 	else if(key > ptr->key)
 	{
 		ptr->right = insert(key,ptr->right);
+		ptr->right->parent = ptr;
 	}
 	else if(key < ptr->key)
+	{
 		ptr->left = insert(key,ptr->left);
+		ptr->left->parent = ptr;
+	}
 	else // its equals
 		throw string("The input value correspond to inserted value in the tree.");
 	return ptr;
@@ -74,9 +77,13 @@ double BST::root() {
 bool BST::contains(double key){
 	return ( contains(key,_root) == NULL );
 }
+/** this method gets as input an key, and output her parent node value in the tree **/
 double BST::parent(double key){
-	// **** NEED TO IMPLEMENT
-}
+	node* temp = contains(key,_root);
+	if(temp->parent != NULL )
+		return temp->parent->key;
+	else
+		throw string("there no parent node");}
 
 /** this method gets as input an key, and output her right node value in the tree **/
 double BST::right(double key){
@@ -96,18 +103,25 @@ double BST::left(double key){
 }
 /** this method is responsible to call inorder() method in order to print the current state of the tree **/
 void BST::print(){
-	inorder(_root);
+	postorder(_root,0);
 }
-/** This method is responsible to print the current BST in `inOrder` **/
-void BST::inorder(node* ptr)
+/** This method is responsible to print the current BST in `PostOrder`
+ * BASED ON: https://stackoverflow.com/questions/13484943/print-a-binary-tree-in-a-pretty-way
+ */
+void BST::postorder(node* ptr, int indent)
 {
-	if(ptr != NULL)
-	{
-		inorder(ptr->left);
-		cout << ptr->key << endl;
-		inorder(ptr->right);
-	}
+	 if(ptr != NULL) {
+	        if(ptr->right) {
+	            postorder(ptr->right, indent+4);
+	        }
+	        if (indent) {
+	            cout << setw(indent) << ' ';
+	        }
+	        if (ptr->right) cout<<" /\n" << setw(indent) << ' ';
+	        cout<< ptr->key << "\n ";
+	        if(ptr->left) {
+	            cout << setw(indent) << ' ' <<" \\\n";
+	            postorder(ptr->left, indent+4);
+	        }
+	    }
 }
-
-
-

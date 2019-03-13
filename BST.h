@@ -2,11 +2,11 @@
 using namespace std;
 class BST {
 	struct node {
-		double key;
-		node* right;
-		node* left;
+			double key;
+			node* right;
+			node* left;
+			node* parent;
 	};
-
 	node* _root;
 	size_t _size;
 	node* insert(double key,node* ptr);
@@ -26,5 +26,5 @@ public:
 	double root();
 	double left(double key);
 	void print();
-	void inorder(node* ptr);
+	void postorder(node* ptr, int indent);
 };
