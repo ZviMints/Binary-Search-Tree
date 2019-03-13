@@ -80,6 +80,7 @@ bool BST::contains(double key){
 /** this method gets as input an key, and output her parent node value in the tree **/
 double BST::parent(double key){
 	node* temp = contains(key,_root);
+	if(temp == NULL) throw string("there no such node that fit the input key value");
 	if(temp->parent != NULL )
 		return temp->parent->key;
 	else
@@ -88,6 +89,7 @@ double BST::parent(double key){
 /** this method gets as input an key, and output her right node value in the tree **/
 double BST::right(double key){
 	node* temp = contains(key,_root);
+	if(temp == NULL) throw string("there no such node that fit the input key value");
 	if(temp->right != NULL )
 		return temp->right->key;
 	else
@@ -96,6 +98,7 @@ double BST::right(double key){
 /** this method gets as input an key, and output her left node value in the tree **/
 double BST::left(double key){
 	node* temp = contains(key,_root);
+	if(temp == NULL) throw string("there no such node that fit the input key value");
 	if(temp->left != NULL )
 		return temp->left->key;
 	else

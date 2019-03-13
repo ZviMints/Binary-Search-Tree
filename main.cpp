@@ -14,6 +14,8 @@ int main()
 	tree.insert(-1.3);
 	tree.insert(-9);
 	tree.print();
+	cout << tree.parent(-9999) << endl;
+
 	}
 	catch (string & s) { cout << s << endl; }
 
