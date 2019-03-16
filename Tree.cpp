@@ -1,4 +1,4 @@
-#include "Tree.h"
+#include "Tree.hpp"
 
 #include <iomanip> // used for setw ( BASED ON: https://stackoverflow.com/questions/13484943/print-a-binary-tree-in-a-pretty-way )
 /** default Constructor **/
