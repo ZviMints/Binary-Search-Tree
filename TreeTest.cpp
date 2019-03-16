@@ -22,7 +22,7 @@ int main() {
   .CHECK_EQUAL (emptytree.size(), 0)
   .CHECK_OK    (emptytree.insert(5))
   .CHECK_EQUAL (emptytree.size(), 1)
-  .CHECK_EQUAL (emptytree.contains(5), true)
+  .CHECK_EQUAL (emptytree.contains(5), 0)
   .CHECK_OK    (emptytree.remove(5))
   .CHECK_THROWS(emptytree.remove(5))
   .CHECK_EQUAL (emptytree.size() ,0)
