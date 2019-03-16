@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+namespace ariel {
 class Tree {
 	struct node {
 			double key;
@@ -29,3 +30,4 @@ public:
 	void print();
 	void postorder(node* ptr, int indent);
 };
+}
