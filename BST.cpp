@@ -30,6 +30,7 @@ BST::node* BST::allocateLeaf(double key) {
 	temp->parent = NULL;
 	return temp;
 }
+/** This method is responsible to insert value to the BS Tree. **/
 BST::node* BST::insert(double key,node* ptr) {
 	if(ptr == NULL)
 	{
@@ -50,9 +51,58 @@ BST::node* BST::insert(double key,node* ptr) {
 		throw string("The input value correspond to inserted value in the tree.");
 	return ptr;
 }
-void BST::remove(double key,node* ptr) {
-	// **** NEED TO IMPLEMENT
+/** This method is responsible to remove value from the BS Tree. **/
+BST::node* BST::remove(double key,node* ptr) {
+
+	// Base cases
+	if(ptr == NULL) return ptr;
+
+	else if(key > ptr->key) ptr->right = remove(key,ptr->right);
+
+	else if(key < ptr->key) ptr->left = remove(key,ptr->left);
+
+	// key == ptr->key && ptr != NULL
+	else
+	{
+		// No child
+		if(ptr->right == NULL && ptr->left == NULL)
+		{
+			free(ptr);
+			ptr = NULL;
+		}
+		// One child
+		else if(ptr->right == NULL)
+		{
+			node* temp = ptr;
+			ptr = ptr->left;
+			delete temp;
+		}
+		else if(ptr->left == NULL)
+		{
+			node* temp = ptr;
+			ptr = ptr->right;
+			delete temp;
+		}
+		else {
+			// Two child
+			node* temp = MinValueSubtree(ptr->right);
+			ptr->key = temp->key;
+			ptr->right = remove(temp->key,ptr->right);
+		}
+	}
+	return ptr;
 }
+/** This method is responsible to return the minimum node in the input subtree **/
+BST::node* BST::MinValueSubtree(node* root)
+{
+	node* current = root;
+	while (current->left != NULL)
+	{
+		current = current->left;
+	}
+	return current;
+}
+
 BST::node* BST::contains(double key,node* ptr)
 {
 	if( ptr == NULL || ptr->key == key ) return ptr;
@@ -62,8 +112,10 @@ BST::node* BST::contains(double key,node* ptr)
 /** This method is responsible to insert value to the BS Tree. **/
 void BST::insert(double key){
 	if(_root == NULL) _root = allocateLeaf(key);
-	else insert(key,_root);
+	else
+		insert(key,_root);
 }
+/** This method is responsible to remove value from the BS Tree. **/
 void BST::remove(double key){ remove(key,_root);}
 
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
@@ -95,6 +147,7 @@ double BST::right(double key){
 	else
 		throw string("there no right node");
 }
+
 /** this method gets as input an key, and output her left node value in the tree **/
 double BST::left(double key){
 	node* temp = contains(key,_root);
@@ -113,18 +166,18 @@ void BST::print(){
  */
 void BST::postorder(node* ptr, int indent)
 {
-	 if(ptr != NULL) {
-	        if(ptr->right) {
-	            postorder(ptr->right, indent+4);
-	        }
-	        if (indent) {
-	            cout << setw(indent) << ' ';
-	        }
-	        if (ptr->right) cout<<" /\n" << setw(indent) << ' ';
-	        cout<< ptr->key << "\n ";
-	        if(ptr->left) {
-	            cout << setw(indent) << ' ' <<" \\\n";
-	            postorder(ptr->left, indent+4);
-	        }
-	    }
+	if(ptr != NULL) {
+		if(ptr->right) {
+			postorder(ptr->right, indent+4);
+		}
+		if (indent) {
+			cout << setw(indent) << ' ';
+		}
+		if (ptr->right) cout<<" /\n" << setw(indent) << ' ';
+		cout<< ptr->key << "\n ";
+		if(ptr->left) {
+			cout << setw(indent) << ' ' <<" \\\n";
+			postorder(ptr->left, indent+4);
+		}
+	}
 }

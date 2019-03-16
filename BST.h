@@ -10,10 +10,11 @@ class BST {
 	node* _root;
 	size_t _size;
 	node* insert(double key,node* ptr);
-	void remove(double key,node* ptr);
+	node* remove(double key,node* ptr);
 	node* contains(double key,node* ptr);
 	void freeSubtree(node* ptr);
 	node* allocateLeaf(double key);
+	node* MinValueSubtree(node* root);
 public:
 	BST();
 	~BST();
