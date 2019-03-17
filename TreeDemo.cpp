@@ -1,42 +1,31 @@
-/**
- * Demo program for the exercise on binary trees
- *
- * @author Erel Segal-Halevi
- * @since 2019-02
- */
-
 #include <iostream>
-using std::cout, std::endl;
-
+#include <string>
 #include "Tree.hpp"
+using namespace ariel;
 
-int main() {
-  try {
-    // constructs an empty tree:
-    ariel::Tree emptytree;
-    cout << "emptytree: size=" << emptytree.size() << endl; // should print 0
-    
-    // constructs an ordered binary tree where:
-      // 5 is in the root;
-      // 3 is the root's left child;
-      // 7 is the root's right child.
-    ariel::Tree threetree;
-    threetree.insert(5);
-    threetree.insert(7);
-    threetree.insert(3);
-    cout << "threetree: size=" << threetree.size() << " root=" << threetree.root() << endl << "   ";  // size=3, root=5.
-    threetree.print();
-    cout << endl;
-      
-    cout << threetree.size()      // should print 3
-         << threetree.parent(3)   // should print 5
-         << threetree.parent(7)   // should print 5
-         << threetree.left(5)     // should print 3
-         << threetree.right(5)    // should print 7
-         //<< threetree.insert(5)    // should throw an exception: "5 already exists"
-         << endl;
-  } catch (...) {
-    cout << "Caught exception!" << endl;
-  }
+#define LOG(x) std::cout << x << std::endl;
+int main()
+{
+	try {
+		Tree tree;
+		tree.insert(3);
+		tree.insert(5);
+		tree.insert(7);
+		tree.insert(-1);
+		tree.insert(16);
+		tree.insert(0);
+		tree.insert(-5);
+		tree.insert(6.2);
+		tree.insert(-1.3);
+		tree.insert(-9);
+		tree.insert(0.1);
+		tree.remove(6.2);
+		tree.remove(0);
+		tree.remove(-1);
+		LOG("Tree size is: " << tree.size());
+		tree.print();
+		tree.insert(5);
+	}
+	catch (std::exception& exp) { std::cout << exp.what() << std::endl; }
+	std::cin.get();
 }
-

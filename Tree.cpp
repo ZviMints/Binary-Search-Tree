@@ -32,7 +32,7 @@ Tree::node* Tree::allocateLeaf(double key) {
 	return temp;
 }
 /** This method is responsible to insert value to the BS Tree. **/
-Tree::node* Tree::insert(double key,node* ptr) {
+Tree::node* Tree::insert(double key,node*& ptr) {
 	if(ptr == NULL)
 	{
 		ptr = allocateLeaf(key);
@@ -49,7 +49,7 @@ Tree::node* Tree::insert(double key,node* ptr) {
 		ptr->left->parent = ptr;
 	}
 	else // its equals
-		throw string("The input value correspond to inserted value in the tree.");
+		throw std::runtime_error("The input value correspond to inserted value in the tree.");
 	return ptr;
 }
 /** This method is responsible to remove value from the BS Tree. **/
@@ -112,21 +112,19 @@ Tree::node* Tree::contains(double key,node* ptr)
 }
 /** This method is responsible to insert value to the BS Tree. **/
 void Tree::insert(double key){
-	if(_root == NULL) { _root = allocateLeaf(key); _size++; }
-	else
-		insert(key,_root);
+insert(key,_root);
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(double key){
-	if(contains(key) == 1) throw string ("no such key to delete");
+	if(contains(key) == 1) throw std::runtime_error ("no such key to delete");
 	else { remove(key,_root); _size--; }
 }
 
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
-size_t Tree::size(){ return _size; }
+unsigned int Tree::size(){ return _size; }
 /** This method is responsible to return the current root data **/
 double Tree::root() {
-	if(_root == NULL) throw string("_root is NULL.");
+	if(_root == NULL) throw std::runtime_error("_root is NULL.");
 	else return _root->key;
 }
 /** This method is responsible to return true iff key can be found in the BS Tree. **/
@@ -136,30 +134,30 @@ bool Tree::contains(double key){
 /** this method gets as input an key, and output her parent node value in the tree **/
 double Tree::parent(double key){
 	node* temp = contains(key,_root);
-	if(temp == NULL) throw string("there no such node that fit the input key value");
+	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->parent != NULL )
 		return temp->parent->key;
 	else
-		throw string("there no parent node");}
+		throw std::runtime_error("there no parent node");}
 
 /** this method gets as input an key, and output her right node value in the tree **/
 double Tree::right(double key){
 	node* temp = contains(key,_root);
-	if(temp == NULL) throw string("there no such node that fit the input key value");
+	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->right != NULL )
 		return temp->right->key;
 	else
-		throw string("there no right node");
+		throw std::runtime_error("there no right node");
 }
 
 /** this method gets as input an key, and output her left node value in the tree **/
 double Tree::left(double key){
 	node* temp = contains(key,_root);
-	if(temp == NULL) throw string("there no such node that fit the input key value");
+	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->left != NULL )
 		return temp->left->key;
 	else
-		throw string("there no left node");
+		throw std::runtime_error("there no left node");
 }
 /** this method is responsible to call inorder() method in order to print the current state of the tree **/
 void Tree::print(){

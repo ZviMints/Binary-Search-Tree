@@ -9,8 +9,8 @@ class Tree {
 			node* parent;
 	};
 	node* _root;
-	size_t _size;
-	node* insert(double key,node* ptr);
+	unsigned int _size;
+	node* insert(double key,node*& ptr);
 	node* remove(double key,node* ptr);
 	node* contains(double key,node* ptr);
 	void freeSubtree(node* ptr);
@@ -21,7 +21,7 @@ public:
 	~Tree();
 	void insert(double key);
 	void remove(double key);
-	size_t size();
+	unsigned int size();
 	bool contains(double key);
 	double parent(double key);
 	double right(double key);
