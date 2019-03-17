@@ -19,7 +19,6 @@ void Tree::freeSubtree(node* ptr)
 		freeSubtree(ptr->right);
 		freeSubtree(ptr->left);
 		delete ptr;
-		_size-- ;
 	}
 
 }
@@ -68,7 +67,7 @@ Tree::node* Tree::remove(double key,node* ptr) {
 		// No child
 		if(ptr->right == NULL && ptr->left == NULL)
 		{
-			free(ptr);
+			delete ptr;
 			ptr = NULL;
 		}
 		// One child

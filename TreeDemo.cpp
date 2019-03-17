@@ -24,7 +24,6 @@ int main()
 		tree.remove(-1);
 		LOG("Tree size is: " << tree.size());
 		tree.print();
-		tree.insert(5);
-	}
-	catch (std::exception& exp) { std::cout << exp.what() << std::endl; }
+	   }
+	   catch (std::exception& exp) { std::cout << exp.what() << std::endl; }
 }
