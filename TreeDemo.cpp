@@ -27,5 +27,4 @@ int main()
 		tree.insert(5);
 	}
 	catch (std::exception& exp) { std::cout << exp.what() << std::endl; }
-	std::cin.get();
 }

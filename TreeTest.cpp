@@ -34,7 +34,30 @@ int main() {
   .CHECK_EQUAL (threetree.left(5), 3)
   .CHECK_EQUAL (threetree.right(5), 7)
   .CHECK_THROWS(threetree.insert(3))
+  .CHECK_OK    (threetree.insert(8))
+  .CHECK_OK    (threetree.insert(-3))
+  .CHECK_OK    (threetree.insert(7.5))
+  .CHECK_OK    (threetree.insert(0))
+  .CHECK_EQUAL (threetree.size(), 7)
+  .CHECK_EQUAL (threetree.parent(7.5), 8)
+  .CHECK_EQUAL (threetree.parent(0), -3)
+  //.CHECK_OK    (threetree.print())
+
+
+  .CHECK_OK(threetree.remove(0)) // leaf
+  .CHECK_EQUAL(threetree.contains(0),1) // leaf
+
+  .CHECK_OK(threetree.remove(3)) // one child
+  .CHECK_EQUAL(threetree.contains(3),1) // one child
+
+  .CHECK_OK(threetree.remove(5)) // two child
+  .CHECK_EQUAL(threetree.contains(5),1) // two child
+
+  .CHECK_THROWS(threetree.insert(8))
   .CHECK_OK    (threetree.print())
+
+  
+  
   
   .print();
   
