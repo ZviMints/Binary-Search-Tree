@@ -10,7 +10,7 @@ class Tree {
 	};
 	node* _root;
 	unsigned int _size;
-	node* insert(double key,node*& ptr);
+	node* insert(double key,node* ptr);
 	node* remove(double key,node* ptr);
 	node* contains(double key,node* ptr);
 	void freeSubtree(node* ptr);

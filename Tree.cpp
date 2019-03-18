@@ -31,7 +31,7 @@ Tree::node* Tree::allocateLeaf(double key) {
 	return temp;
 }
 /** This method is responsible to insert value to the BS Tree. **/
-Tree::node* Tree::insert(double key,node*& ptr) {
+Tree::node* Tree::insert(double key,node* ptr) {
 	if(ptr == NULL)
 	{
 		ptr = allocateLeaf(key);
@@ -111,11 +111,12 @@ Tree::node* Tree::contains(double key,node* ptr)
 }
 /** This method is responsible to insert value to the BS Tree. **/
 void Tree::insert(double key){
-insert(key,_root);
+if(_root == NULL) { _root = allocateLeaf(key); _size++; }
+else insert(key,_root);
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(double key){
-	if(contains(key) == 1) throw std::runtime_error ("no such key to delete");
+	if(contains(key) == false) throw std::runtime_error ("no such key to delete");
 	else { remove(key,_root); _size--; }
 }
 
@@ -128,7 +129,8 @@ double Tree::root() {
 }
 /** This method is responsible to return true iff key can be found in the BS Tree. **/
 bool Tree::contains(double key){
-	return ( contains(key,_root) == NULL );
+	if ( contains(key,_root) == NULL ) return false;
+	else return true;
 }
 /** this method gets as input an key, and output her parent node value in the tree **/
 double Tree::parent(double key){
