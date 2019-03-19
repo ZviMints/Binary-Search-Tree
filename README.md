@@ -1,8 +1,12 @@
-# Binary-Search-Tree
-Binary Search Tree Project made during CPP course at Ariel University 2019
+<h1><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">Binary-Search-Tree
+</span></span></h1>
+<p>Created during a computer CPP course during the second year at Ariel University in the Department of Computer Science, 2019 <br /> <strong>Project site:</strong>&nbsp;<a href="https://zvimints.github.io/Binary-Search-Tree/">https://zvimints.github.io/Binary-Search-Tree/</a><br /> <strong>Made by: </strong><a href="https://github.com/ZviMints">Zvi Mints</a> and <a href="https://github.com/orabu103">Or Abuhazira</a> and <a href="https://github.com/eilon26">Eilon Tsadok</a></p>
 
-Welcome to the Binary-Search-Tree wiki!
-# In this project we creat a class of a binary search tree that contain numbers.
+Welcome to the Binary-Search-Tree page! :boom:
+# In this project we create a class of a binary search tree that contain numbers.
+
+<h1>Functionality:</h1> <br>
+<img src="./Hfiles.jpg"/> <br>
 
 # How to use the tree:
 
@@ -10,7 +14,7 @@ Welcome to the Binary-Search-Tree wiki!
 Note: if you insert existing number the function will throw an exception.
 
 ## Remove - in order to remove a number from the tree and keep it organized, just use the function remove(your number).
-Note: if you remove a  non existing number the function will throw an exception.
+Note: if you remove a  non existing number the function will throw an <b>exception</b>.
 
 ## Size - in order to get the amount of the numbers in the tree, just use the function size().
 
@@ -18,7 +22,6 @@ Note: if you remove a  non existing number the function will throw an exception
 
 ## Root - in order to get the value of the root, just use the function root().
 Note: if the tree is empty the function will throw an exception.
-
 
 ## Neighbors - in order to find who is the neighbors of some number that in the tree, just use the functions parent(your_number), left(your_number), right(your_number).
 Note: if there is no neighbor as you ask for, the function will throw an exception.
