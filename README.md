@@ -2,8 +2,15 @@
 <h1><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">Binary-Search-Tree
 </span></span></h1>
 <p>Created during a computer CPP course during the second year at Ariel University in the Department of Computer Science, 2019 <br /> <strong>Project site:</strong>&nbsp;<a href="https://zvimints.github.io/Binary-Search-Tree/">https://zvimints.github.io/Binary-Search-Tree/</a><br /> <strong>Made by: </strong><a href="https://github.com/ZviMints">Zvi Mints</a> and <a href="https://github.com/orabu103">Or Abuhazira</a> and <a href="https://github.com/eilon26">Eilon Tsadok</a></p>
+Welcome to the Binary-Search-Tree page! :boom: <br>
 
-Welcome to the Binary-Search-Tree page! :boom:
+<b>Makefile: </b>Makefile script in order to merge all the files together
+<br><b>Tree.cpp: </b>Main Source cpp file of the project, include the Tree.hpp
+<br><b>Tree.hpp: </b>The main Header hpp file of the project, includes declaration of the methods that relevant to the BEST.
+<br><b>TreeDemo.cpp: </b>Simple Demo that using the BST code.
+<br><b>TreeTest.cpp: </b>Testing file for BST.
+
+
 # In this project we create a class of a binary search tree that contain numbers.
 
 <h1>Functionality:</h1> <br>
