@@ -1,3 +1,4 @@
+<img src="https://media.licdn.com/dms/image/C4D0BAQGD7npMPoXymw/company-logo_200_200/0?e=2159024400&v=beta&t=TZ8Ub3U2jCZgA1_kAx6SE8jmAcSJkbiZAuN6Kn1_lW0" height="100px">
 <h1><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">Binary-Search-Tree
 </span></span></h1>
 <p>Created during a computer CPP course during the second year at Ariel University in the Department of Computer Science, 2019 <br /> <strong>Project site:</strong>&nbsp;<a href="https://zvimints.github.io/Binary-Search-Tree/">https://zvimints.github.io/Binary-Search-Tree/</a><br /> <strong>Made by: </strong><a href="https://github.com/ZviMints">Zvi Mints</a> and <a href="https://github.com/orabu103">Or Abuhazira</a> and <a href="https://github.com/eilon26">Eilon Tsadok</a></p>
