@@ -11,7 +11,7 @@ Welcome to the Binary-Search-Tree page! :boom: <br>
 <br><b>TreeTest.cpp: </b>Testing file for BST.
 
 
-# In this project we create a class of a binary search tree that contain real numbers.
+# In this project we create a class of a binary search tree that contains real numbers.
 
 <h1>Functionality:</h1> <br>
 <img src="./Hfiles.jpg"/> <br>
