@@ -72,70 +72,89 @@ void Tree::insert(double key){
 	if(_root == NULL) { _root = allocateLeaf(key); _size++; }
 	else insert(key,_root);
 }
-/** This method is responsible to remove root from the BS Tree. **/
-void Tree::removeRoot() {
-
-}
-
+/** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(double key){
 
 	node* ptr = contains(key,_root);
-	node* parent = ptr->parent;
 
 	if(ptr == NULL || this->_root == NULL )
 		throw std::runtime_error ("no such key to delete");
-	else if(parent == NULL) removeRoot();
+
 	else
 	{
+		node* parent = ptr->parent;
+		if(ptr == NULL) return;
+
 		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
 		{
-
-			if(parent->key < ptr->key) // ptr is right children of parent
-				parent->right = NULL;
+			if(parent == NULL) {
+				this->_root = NULL;
+			}
 			else
-				parent->left = NULL;
-
+			{
+				if(parent->key < ptr->key) // ptr is right children of parent
+				{
+					parent->right = NULL;
+				}
+				else
+				{
+					parent->left = NULL;
+				}
+			}
 			delete ptr;
 		}
 		else if(ptr->left == NULL) // Case 2: One Right Children
 		{
-			if(parent->key < ptr->key) // ptr is right children of parent
+			if(parent == NULL)
 			{
-				parent->right = ptr->right;
-				ptr->right->parent = parent;
+				this->_root = ptr->right;
 			}
 			else
 			{
-				parent->left = ptr->left;
-				ptr->right->parent = parent;
+				if(parent->key < ptr->key) // ptr is right children of parent
+				{
+					parent->right = ptr->right;
+					ptr->right->parent = parent;
+				}
+				else
+				{
+					parent->left = ptr->right;
+					ptr->right->parent = parent;
+				}
 			}
 			delete ptr;
 		}
 		else if(ptr->right == NULL) // Case 2: One Left Children
 		{
-			if(parent->key < ptr->key) // ptr is right children of parent
+			if(parent == NULL)
 			{
-				parent->right = ptr->right;
-				ptr->right->parent = parent;
+				this->_root = ptr->left;
 			}
 			else
 			{
-				parent->left = ptr->left;
-				ptr->right->parent = parent;
+				if(parent->key < ptr->key) // ptr is right children of parent
+				{
+					parent->right = ptr->left;
+					ptr->left->parent = parent;
+				}
+				else
+				{
+					parent->left = ptr->left;
+					ptr->left->parent = parent;
+				}
 			}
 			delete ptr;
 		}
 		else // Case 3: Two Children
 		{
 			node* temp = MinValueSubtree(ptr->right);
-			int _key = temp->key;
-			remove(temp->key);
+			double _key = temp->key;
+			remove(_key);
 			ptr->key = _key;
 		}
 		_size--;
-	}
+	}	
 }
-
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
 unsigned int Tree::size(){ return _size; }
 /** This method is responsible to return the current root data **/
