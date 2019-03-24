@@ -73,11 +73,8 @@ void Tree::insert(int key){
 	else insert(key,_root);
 }
 /** This method is responsible to remove value from the BS Tree. **/
-void Tree::remove(int key){
-
-	node* ptr = contains(key,_root);
-
-	if(ptr == NULL || this->_root == NULL )
+void Tree::remove(node* ptr){
+if(ptr == NULL || this->_root == NULL )
 		throw std::runtime_error ("no such key to delete");
 
 	else
@@ -151,11 +148,21 @@ void Tree::remove(int key){
 		{
 			node* temp = MinValueSubtree(ptr->right);
 			int _key = temp->key;
-			remove(_key);
+			remove(temp);
 			ptr->key = _key;
 		}
 		_size--;
 	}	
+}
+/** This method is responsible to remove value from the BS Tree. **/
+void Tree::remove(int key){
+	node* ans = contains(key,_root);
+	if( ans == NULL) 
+			throw std::runtime_error ("no such key to delete");
+	else
+	{
+		remove(ans);
+	}
 }
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
 unsigned int Tree::size(){ return _size; }
