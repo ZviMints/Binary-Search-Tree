@@ -20,7 +20,6 @@ void Tree::freeSubtree(node* ptr)
 		freeSubtree(ptr->left);
 		delete ptr;
 	}
-
 }
 Tree::node* Tree::allocateLeaf(double key) {
 	node* temp = new node;
@@ -51,53 +50,6 @@ Tree::node* Tree::insert(double key,node* ptr) {
 		throw std::runtime_error("The input value correspond to inserted value in the tree.");
 	return ptr;
 }
-/** This method is responsible to remove value from the BS Tree. **/
-Tree::node* Tree::remove(double key,node* ptr) {
-
-	// Base cases
-	if(ptr == NULL) return ptr;
-
-	else if(key > ptr->key) ptr->right = remove(key,ptr->right);
-
-	else if(key < ptr->key) ptr->left = remove(key,ptr->left);
-
-	// key == ptr->key && ptr != NULL
-	else
-	{
-		// No child
-		if(ptr->right == NULL && ptr->left == NULL)
-		{
-			if(ptr != this->_root)
-				delete ptr;
-			ptr = NULL;
-			
-		}
-		// One child
-		else if(ptr->right == NULL)
-		{
-			node* parent = ptr->parent;
-			node* temp = ptr;
-			ptr = ptr->left;
-			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
-			delete temp;
-		}
-		else if(ptr->left == NULL)
-		{
-			node* parent = ptr->parent;
-			node* temp = ptr;
-			ptr = ptr->right;
-			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
-			delete temp;
-		}
-		else {
-			// Two child
-			node* temp = MinValueSubtree(ptr->right);
-			ptr->key = temp->key;
-//			ptr->right = remove(temp->key,ptr->right);
-		}
-	}
-	return ptr;
-}
 /** This method is responsible to return the minimum node in the input subtree **/
 Tree::node* Tree::MinValueSubtree(node* root)
 {
@@ -122,8 +74,60 @@ void Tree::insert(double key){
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(double key){
-	if(contains(key) == false) throw std::runtime_error ("no such key to delete");
-	else { remove(key,_root); _size--; }
+
+	node* ptr = contains(key,_root);
+
+	if(ptr == NULL || this->_root == NULL )
+		throw std::runtime_error ("no such key to delete");
+	else
+	{
+		node* parent = ptr->parent;
+		if(ptr == NULL) return;
+
+		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
+		{
+			if(parent == NULL) {
+				this->_root = NULL;
+			}
+			delete ptr;
+		}
+		else if(ptr->left == NULL) // Case 2: One Right Children
+		{
+			if(parent->key < ptr->key) // ptr is right children of parent
+			{
+				parent->right = ptr->right;
+				ptr->right->parent = parent;
+			}
+			else
+			{
+				parent->left = ptr->left;
+				ptr->right->parent = parent;
+			}
+			delete ptr;
+		}
+		else if(ptr->right == NULL) // Case 2: One Left Children
+		{
+			if(parent->key < ptr->key) // ptr is right children of parent
+			{
+				parent->right = ptr->right;
+				ptr->right->parent = parent;
+			}
+			else
+			{
+				parent->left = ptr->left;
+				ptr->right->parent = parent;
+			}
+			delete ptr;
+		}
+		else // Case 3: Two Children
+		{
+			node* temp = MinValueSubtree(ptr->right);
+			int _key = temp->key;
+			remove(temp->key);
+			ptr->key = _key;
+		}
+		_size--;
+	}
 }
 
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
