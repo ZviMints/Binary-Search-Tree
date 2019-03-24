@@ -83,7 +83,7 @@ void Tree::remove(double key){
 	else
 	{
 		node* parent = ptr->parent;
-		
+
 		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
 		{
 			if(parent == NULL) {
@@ -148,7 +148,7 @@ void Tree::remove(double key){
 		{
 			node* temp = MinValueSubtree(ptr->right);
 			double _key = temp->key;
-			// remove(_key);
+			remove(_key);
 			ptr->key = _key;
 		}
 		_size--;
