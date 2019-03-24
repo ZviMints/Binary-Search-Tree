@@ -106,8 +106,8 @@ void Tree::remove(double key){
 		{
 			if(parent == NULL)
 			{
-				_root = ptr->right;
-			    _root->parent = NULL;
+				this->_root = ptr->right;
+				this->_root->parent = NULL;
 
 			}
 			else
@@ -129,8 +129,8 @@ void Tree::remove(double key){
 		{
 			if(parent == NULL)
 			{
-				_root = ptr->left;
-				_root->parent = NULL;
+				this->_root = ptr->left;
+				this->_root->parent = NULL;
 			}
 			else
 			{
@@ -149,10 +149,10 @@ void Tree::remove(double key){
 		}
 		else // Case 3: Two Children
 		{
-			node* temp = MinValueSubtree(ptr->right);
-			double _key = temp->key;
-			remove(_key);
-			ptr->key = _key;
+			// node* temp = MinValueSubtree(ptr->right);
+			// double _key = temp->key;
+			// remove(_key);
+			// ptr->key = _key;
 		}
 		_size--;
 	}	
