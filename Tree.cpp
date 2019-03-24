@@ -83,8 +83,7 @@ void Tree::remove(double key){
 	else
 	{
 		node* parent = ptr->parent;
-		if(ptr == NULL) return;
-
+		
 		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
 		{
 			if(parent == NULL) {
