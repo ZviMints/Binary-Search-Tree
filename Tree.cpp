@@ -21,7 +21,7 @@ void Tree::freeSubtree(node* ptr)
 		delete ptr;
 	}
 }
-Tree::node* Tree::allocateLeaf(double key) {
+Tree::node* Tree::allocateLeaf(int key) {
 	node* temp = new node;
 	temp->key = key;
 	temp->right = NULL;
@@ -30,7 +30,7 @@ Tree::node* Tree::allocateLeaf(double key) {
 	return temp;
 }
 /** This method is responsible to insert value to the BS Tree. **/
-Tree::node* Tree::insert(double key,node* ptr) {
+Tree::node* Tree::insert(int key,node* ptr) {
 	if(ptr == NULL)
 	{
 		ptr = allocateLeaf(key);
@@ -61,19 +61,19 @@ Tree::node* Tree::MinValueSubtree(node* root)
 	return current;
 }
 
-Tree::node* Tree::contains(double key,node* ptr)
+Tree::node* Tree::contains(int key,node* ptr)
 {
 	if( ptr == NULL || ptr->key == key ) return ptr;
 	else if ( key > ptr->key ) return contains(key, ptr->right);
 	else return contains(key, ptr->left);
 }
 /** This method is responsible to insert value to the BS Tree. **/
-void Tree::insert(double key){
+void Tree::insert(int key){
 	if(_root == NULL) { _root = allocateLeaf(key); _size++; }
 	else insert(key,_root);
 }
 /** This method is responsible to remove value from the BS Tree. **/
-void Tree::remove(double key){
+void Tree::remove(int key){
 
 	node* ptr = contains(key,_root);
 
@@ -150,7 +150,7 @@ void Tree::remove(double key){
 		else // Case 3: Two Children
 		{
 			// node* temp = MinValueSubtree(ptr->right);
-			// double _key = temp->key;
+			// int _key = temp->key;
 			// remove(_key);
 			// ptr->key = _key;
 		}
@@ -160,17 +160,17 @@ void Tree::remove(double key){
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
 unsigned int Tree::size(){ return _size; }
 /** This method is responsible to return the current root data **/
-double Tree::root() {
+int Tree::root() {
 	if(_root == NULL) throw std::runtime_error("_root is NULL.");
 	else return _root->key;
 }
 /** This method is responsible to return true iff key can be found in the BS Tree. **/
-bool Tree::contains(double key){
+bool Tree::contains(int key){
 	if ( contains(key,_root) == NULL ) return false;
 	else return true;
 }
 /** this method gets as input an key, and output her parent node value in the tree **/
-double Tree::parent(double key){
+int Tree::parent(int key){
 	node* temp = contains(key,_root);
 	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->parent != NULL )
@@ -179,7 +179,7 @@ double Tree::parent(double key){
 		throw std::runtime_error("there no parent node");}
 
 /** this method gets as input an key, and output her right node value in the tree **/
-double Tree::right(double key){
+int Tree::right(int key){
 	node* temp = contains(key,_root);
 	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->right != NULL )
@@ -189,7 +189,7 @@ double Tree::right(double key){
 }
 
 /** this method gets as input an key, and output her left node value in the tree **/
-double Tree::left(double key){
+int Tree::left(int key){
 	node* temp = contains(key,_root);
 	if(temp == NULL) throw std::runtime_error("there no such node that fit the input key value");
 	if(temp->left != NULL )
