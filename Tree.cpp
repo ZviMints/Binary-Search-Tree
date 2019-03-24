@@ -89,10 +89,10 @@ Tree::node* Tree::remove(double key,node* ptr) {
 			delete temp;
 		}
 		else {
-			// Two child
-			node* temp = MinValueSubtree(ptr->right);
-			ptr->key = temp->key;
-			ptr->right = remove(temp->key,ptr->right);
+//			// Two child
+//			node* temp = MinValueSubtree(ptr->right);
+//			ptr->key = temp->key;
+//			ptr->right = remove(temp->key,ptr->right);
 		}
 	}
 	return ptr;
