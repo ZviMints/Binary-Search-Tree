@@ -67,9 +67,9 @@ Tree::node* Tree::remove(double key,node* ptr) {
 		// No child
 		if(ptr->right == NULL && ptr->left == NULL)
 		{
-			if(ptr != this->_root)
-				delete ptr;
-			ptr = NULL;
+			//if(ptr != this->_root)
+				//delete ptr;
+			//ptr = NULL;
 			
 		}
 		// One child
