@@ -53,49 +53,68 @@ Tree::node* Tree::insert(double key,node* ptr) {
 	return ptr;
 }
 /** This method is responsible to remove value from the BS Tree. **/
-Tree::node* Tree::remove(double key,node* ptr) {
-
-	// Base cases
-	if(ptr == NULL) return ptr;
-
-	else if(key > ptr->key) ptr->right = remove(key,ptr->right);
-
-	else if(key < ptr->key) ptr->left = remove(key,ptr->left);
-
-	// key == ptr->key && ptr != NULL
-	else
+void Tree::remove(double key,node* ptr) {
+	//Case 1: NO Child
+	if(ptr->left == NULL && ptr->right == NULL)
 	{
-		// No child
-		if(ptr->right == NULL && ptr->left == NULL)
+		node* parent = ptr->parent;
+		if(parent == NULL) this->_root = NULL;
+		else if(parent->key < ptr->key)
 		{
-			delete ptr;
-			ptr = NULL;
+			parent->right = NULL;
 		}
-		// One child
-		else if(ptr->right == NULL)
+		else
+			parent->left=NULL;
+
+		delete ptr;
+	} // Case 2: One child.
+	else if(ptr->left == NULL)
+	{
+		node* parent = ptr->parent;
+		if(parent == NULL)
 		{
-			node* father = ptr->parent;
-			node* temp = ptr;
-			ptr = ptr->left;
-			ptr->parent = father;
-			delete temp;
+			this->_root = ptr->right;
+			this->_root->parent = NULL;
 		}
-		else if(ptr->left == NULL)
+		else if(parent->key < ptr->key)
 		{
-			node* father = ptr->parent;
-			node* temp = ptr;
-			ptr = ptr->right;
-			ptr->parent = father;
-			delete temp;
+			parent->right = ptr->right;
+			ptr->right->parent = parent;
 		}
-		else {
-			// Two child
-			node* temp = MinValueSubtree(ptr->right);
-			ptr->key = temp->key;
-			ptr->right = remove(temp->key,ptr->right);
+		else
+		{
+			parent->left = ptr->right;
+			ptr->right->parent = parent;
 		}
+		delete ptr;
 	}
-	return ptr;
+	else if(ptr->right == NULL)
+	{
+		node* parent = ptr->parent;
+		if(parent == NULL)
+		{
+			this->_root = ptr->left;
+			this->_root->parent = NULL;
+		}
+		else if(parent->key < ptr->key)
+		{
+			parent->right = ptr->left;
+			ptr->left->parent = parent;
+		}
+		else
+		{
+			parent->left = ptr->left;
+			ptr->left->parent = parent;
+		}
+		delete ptr;
+	}
+	else // Case 3: 2 Children
+	{
+		node* temp = MinValueSubtree(ptr->right);
+		int temp_val = temp->key;
+		this->remove(temp->key);
+		ptr->key = temp_val;
+	}
 }
 /** This method is responsible to return the minimum node in the input subtree **/
 Tree::node* Tree::MinValueSubtree(node* root)
