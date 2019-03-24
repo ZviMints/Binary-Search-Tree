@@ -9,6 +9,7 @@ Tree::Tree() {
 /** default Destructor  **/
 Tree::~Tree() {
 	freeSubtree(_root);
+	_size = 0;
 	cout << "Tree Deleted." << endl;
 }
 /** this method is responsible to free an substree that passed by input **/
