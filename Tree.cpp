@@ -67,27 +67,32 @@ Tree::node* Tree::remove(double key,node* ptr) {
 		// No child
 		if(ptr->right == NULL && ptr->left == NULL)
 		{
-			delete ptr;
+			if(ptr == this->_root)
+				delete ptr;
 			ptr = NULL;
 		}
 		// One child
 		else if(ptr->right == NULL)
 		{
+			node* parent = ptr->parent;
 			node* temp = ptr;
 			ptr = ptr->left;
+			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
 			delete temp;
 		}
 		else if(ptr->left == NULL)
 		{
+			node* parent = ptr->parent;
 			node* temp = ptr;
 			ptr = ptr->right;
+			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
 			delete temp;
 		}
 		else {
-			// Two child
-			node* temp = MinValueSubtree(ptr->right);
-			ptr->key = temp->key;
-			ptr->right = remove(temp->key,ptr->right);
+//			// Two child
+//			node* temp = MinValueSubtree(ptr->right);
+//			ptr->key = temp->key;
+//			ptr->right = remove(temp->key,ptr->right);
 		}
 	}
 	return ptr;
@@ -111,8 +116,8 @@ Tree::node* Tree::contains(double key,node* ptr)
 }
 /** This method is responsible to insert value to the BS Tree. **/
 void Tree::insert(double key){
-if(_root == NULL) { _root = allocateLeaf(key); _size++; }
-else insert(key,_root);
+	if(_root == NULL) { _root = allocateLeaf(key); _size++; }
+	else insert(key,_root);
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(double key){
