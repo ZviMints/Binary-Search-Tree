@@ -149,10 +149,10 @@ void Tree::remove(int key){
 		}
 		else // Case 3: Two Children
 		{
-			// node* temp = MinValueSubtree(ptr->right);
-			// int _key = temp->key;
-			// remove(_key);
-			// ptr->key = _key;
+			node* temp = MinValueSubtree(ptr->right);
+			int _key = temp->key;
+			remove(_key);
+			ptr->key = _key;
 		}
 		_size--;
 	}	
