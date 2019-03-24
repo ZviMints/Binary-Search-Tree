@@ -74,6 +74,7 @@ void Tree::insert(int key){
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(node* ptr){
+
 		node* parent = ptr->parent;
 
 		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
@@ -146,7 +147,6 @@ void Tree::remove(node* ptr){
 			remove(temp);
 			ptr->key = _key;
 		}
-		_size--;
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(int key){
@@ -156,6 +156,7 @@ void Tree::remove(int key){
 	else
 	{
 		remove(ans);
+		_size--;
 	}
 }
 /** This method is responsible to return the current size ( number of nodes in the tree ) **/
