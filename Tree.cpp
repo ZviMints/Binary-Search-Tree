@@ -150,7 +150,7 @@ void Tree::remove(double key){
 			node* temp = MinValueSubtree(ptr->right);
 			double _key = temp->key;
 			remove(_key);
-			ptr->key = _key;
+			// ptr->key = _key;
 		}
 		_size--;
 	}	
