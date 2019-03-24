@@ -74,11 +74,6 @@ void Tree::insert(int key){
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(node* ptr){
-if(ptr == NULL || this->_root == NULL )
-		throw std::runtime_error ("no such key to delete");
-
-	else
-	{
 		node* parent = ptr->parent;
 
 		if(ptr->left == NULL && ptr->right == NULL) // Case 1: No Children
@@ -152,13 +147,12 @@ if(ptr == NULL || this->_root == NULL )
 			ptr->key = _key;
 		}
 		_size--;
-	}	
 }
 /** This method is responsible to remove value from the BS Tree. **/
 void Tree::remove(int key){
 	node* ans = contains(key,_root);
-	if( ans == NULL) 
-			throw std::runtime_error ("no such key to delete");
+	if(ans == NULL || this->_root == NULL )
+		throw std::runtime_error ("no such key to delete");
 	else
 	{
 		remove(ans);
