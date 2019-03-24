@@ -15,6 +15,8 @@ class Tree {
 	void freeSubtree(node* ptr);
 	node* allocateLeaf(double key);
 	node* MinValueSubtree(node* root);
+	void removeRoot();
+
 public:
 	Tree();
 	~Tree();
