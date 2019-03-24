@@ -54,7 +54,7 @@ Tree::node* Tree::insert(double key,node* ptr) {
 }
 /** This method is responsible to remove value from the BS Tree. **/
 Tree::node* Tree::remove(double key,node* ptr) {
-/*
+
 	// Base cases
 	if(ptr == NULL) return ptr;
 
@@ -74,14 +74,18 @@ Tree::node* Tree::remove(double key,node* ptr) {
 		// One child
 		else if(ptr->right == NULL)
 		{
+			node* father = ptr->parent;
 			node* temp = ptr;
 			ptr = ptr->left;
+			ptr->parent = father;
 			delete temp;
 		}
 		else if(ptr->left == NULL)
 		{
+			node* father = ptr->parent;
 			node* temp = ptr;
 			ptr = ptr->right;
+			ptr->parent = father;
 			delete temp;
 		}
 		else {
@@ -91,7 +95,6 @@ Tree::node* Tree::remove(double key,node* ptr) {
 			ptr->right = remove(temp->key,ptr->right);
 		}
 	}
-*/
 	return ptr;
 }
 /** This method is responsible to return the minimum node in the input subtree **/
