@@ -54,9 +54,9 @@ Tree::node* Tree::insert(double key,node* ptr) {
 Tree::node* Tree::MinValueSubtree(node* root)
 {
 	node* current = root;
-	while (current->right != NULL)
+	while (current->left != NULL)
 	{
-		current = current->right;
+		current = current->left;
 	}
 	return current;
 }
@@ -106,8 +106,8 @@ void Tree::remove(double key){
 		{
 			if(parent == NULL)
 			{
-				this->_root = ptr->right;
-				this->_root->parent = NULL;
+				_root = ptr->right;
+				_root->parent = NULL;
 
 			}
 			else
@@ -129,8 +129,8 @@ void Tree::remove(double key){
 		{
 			if(parent == NULL)
 			{
-				this->_root = ptr->left;
-				this->_root->parent = NULL;
+				_root = ptr->left;
+				_root = NULL;
 			}
 			else
 			{
@@ -149,7 +149,7 @@ void Tree::remove(double key){
 		}
 		else // Case 3: Two Children
 		{
-			node* temp = MinValueSubtree(ptr->left);
+			node* temp = MinValueSubtree(ptr->right);
 			double _key = temp->key;
 			remove(_key);
 			ptr->key = _key;
