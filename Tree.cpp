@@ -54,48 +54,48 @@ Tree::node* Tree::insert(double key,node* ptr) {
 /** This method is responsible to remove value from the BS Tree. **/
 Tree::node* Tree::remove(double key,node* ptr) {
 
-// 	// Base cases
-// 	if(ptr == NULL) return ptr;
+	// Base cases
+	if(ptr == NULL) return ptr;
 
-// 	else if(key > ptr->key) ptr->right = remove(key,ptr->right);
+	else if(key > ptr->key) ptr->right = remove(key,ptr->right);
 
-// 	else if(key < ptr->key) ptr->left = remove(key,ptr->left);
+	else if(key < ptr->key) ptr->left = remove(key,ptr->left);
 
-// 	// key == ptr->key && ptr != NULL
-// 	else
-// 	{
-// 		// No child
-// 		if(ptr->right == NULL && ptr->left == NULL)
-// 		{
-// 			//if(ptr != this->_root)
-// 				//delete ptr;
-// 			//ptr = NULL;
+	// key == ptr->key && ptr != NULL
+	else
+	{
+		// No child
+		if(ptr->right == NULL && ptr->left == NULL)
+		{
+			if(ptr != this->_root)
+				delete ptr;
+			ptr = NULL;
 			
-// 		}
-// 		// One child
-// 		else if(ptr->right == NULL)
-// 		{
-// 			node* parent = ptr->parent;
-// 			node* temp = ptr;
-// 			ptr = ptr->left;
-// 			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
-// 			delete temp;
-// 		}
-// 		else if(ptr->left == NULL)
-// 		{
-// 			node* parent = ptr->parent;
-// 			node* temp = ptr;
-// 			ptr = ptr->right;
-// 			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
-// 			delete temp;
-// 		}
-// 		else {
-// 			// Two child
-// 			node* temp = MinValueSubtree(ptr->right);
-// 			ptr->key = temp->key;
-// //			ptr->right = remove(temp->key,ptr->right);
-// 		}
-// 	}
+		}
+		// One child
+		else if(ptr->right == NULL)
+		{
+			node* parent = ptr->parent;
+			node* temp = ptr;
+			ptr = ptr->left;
+			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
+			delete temp;
+		}
+		else if(ptr->left == NULL)
+		{
+			node* parent = ptr->parent;
+			node* temp = ptr;
+			ptr = ptr->right;
+			parent == NULL ? ptr->parent = NULL : ptr->parent = parent;
+			delete temp;
+		}
+		else {
+			// Two child
+			node* temp = MinValueSubtree(ptr->right);
+			ptr->key = temp->key;
+//			ptr->right = remove(temp->key,ptr->right);
+		}
+	}
 	return ptr;
 }
 /** This method is responsible to return the minimum node in the input subtree **/
