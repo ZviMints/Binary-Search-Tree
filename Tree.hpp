@@ -3,31 +3,29 @@ using namespace std;
 namespace ariel {
 class Tree {
 	struct node {
-			double key;
+			int key;
 			node* right;
 			node* left;
 			node* parent;
 	};
 	node* _root;
 	unsigned int _size;
-	node* insert(double key,node* ptr);
-	node* contains(double key,node* ptr);
+	node* insert(int key,node* ptr);
+	node* contains(int key,node* ptr);
 	void freeSubtree(node* ptr);
-	node* allocateLeaf(double key);
+	node* allocateLeaf(int key);
 	node* MinValueSubtree(node* root);
-	void removeRoot();
-
 public:
 	Tree();
 	~Tree();
-	void insert(double key);
-	void remove(double key);
+	void insert(int key);
+	void remove(int key);
 	unsigned int size();
-	bool contains(double key);
-	double parent(double key);
-	double right(double key);
-	double root();
-	double left(double key);
+	bool contains(int key);
+	int parent(int key);
+	int right(int key);
+	int root();
+	int left(int key);
 	void print();
 	void postorder(node* ptr, int indent);
 };
