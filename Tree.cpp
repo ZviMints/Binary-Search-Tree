@@ -107,7 +107,7 @@ void Tree::remove(double key){
 			if(parent == NULL)
 			{
 				this->_root = ptr->right;
-				this->_root = NULL;
+				this->_root->parent = NULL;
 
 			}
 			else
@@ -130,7 +130,7 @@ void Tree::remove(double key){
 			if(parent == NULL)
 			{
 				this->_root = ptr->left;
-				this->_root = NULL;
+				this->_root->parent = NULL;
 			}
 			else
 			{
