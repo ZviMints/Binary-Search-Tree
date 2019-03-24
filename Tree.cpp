@@ -79,6 +79,7 @@ void Tree::remove(double key){
 
 	if(ptr == NULL || this->_root == NULL )
 		throw std::runtime_error ("no such key to delete");
+
 	else
 	{
 		node* parent = ptr->parent;
@@ -89,24 +90,46 @@ void Tree::remove(double key){
 			if(parent == NULL) {
 				this->_root = NULL;
 			}
+			else
+			{
+				if(parent->key < ptr->key) // ptr is right children of parent
+				{
+					parent->right = NULL;
+				}
+				else
+				{
+					parent->left = NULL;
+				}
+			}
 			delete ptr;
 		}
 		else if(ptr->left == NULL) // Case 2: One Right Children
 		{
-			if(parent->key < ptr->key) // ptr is right children of parent
+			if(parent == NULL)
 			{
-				parent->right = ptr->right;
-				ptr->right->parent = parent;
+				this->_root = ptr->right;
 			}
 			else
 			{
-				parent->left = ptr->left;
-				ptr->right->parent = parent;
+				if(parent->key < ptr->key) // ptr is right children of parent
+				{
+					parent->right = ptr->right;
+					ptr->right->parent = parent;
+				}
+				else
+				{
+					parent->left = ptr->left;
+					ptr->right->parent = parent;
+				}
 			}
 			delete ptr;
 		}
 		else if(ptr->right == NULL) // Case 2: One Left Children
 		{
+			if(parent == NULL)
+			{
+				this->_root = ptr->left;
+			}
 			if(parent->key < ptr->key) // ptr is right children of parent
 			{
 				parent->right = ptr->right;
