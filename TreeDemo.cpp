@@ -15,11 +15,7 @@ int main()
 		tree.insert(16);
 		tree.insert(0);
 		tree.insert(-5);
-		tree.insert(6.2);
-		tree.insert(-1.3);
 		tree.insert(-9);
-		tree.insert(0.1);
-		tree.remove(6.2);
 		tree.remove(0);
 		tree.remove(-1);
 		LOG("Tree size is: " << tree.size());
